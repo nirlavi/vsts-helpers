@@ -1,4 +1,6 @@
+#Sleep to allow Test Logs to be flushed if executing right after
 Start-Sleep -s 10
+
 $buildId = $(Build.BuildId);
 $user = "$(apiUser)"
 $token = "$(personalAccessToken)"

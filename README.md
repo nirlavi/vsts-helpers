@@ -17,5 +17,7 @@ More information about PATs can be found [here](https://docs.microsoft.com/en-us
 
  - apiUser - The user associated with the PAT created
  - personalAccessToken - The PAT..
+ - account - VSTS account : {account}.visualstudio.com
+ - teamProject - The team project the Repository belongs to
 
 **Powershell Task** - You can then add a (inline) Powershell task after your VSTest tasks.

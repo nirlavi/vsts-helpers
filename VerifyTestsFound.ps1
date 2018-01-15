@@ -4,7 +4,7 @@ Start-Sleep -s 10
 $buildId = $(Build.BuildId);
 $user = "$(apiUser)"
 $token = "$(personalAccessToken)"
-$buildDetailsUri = "https://microsoft.visualstudio.com/DefaultCollection/Universal%20Store/_apis/build/builds/$buildId/timeline?api-version=2.0";
+$buildDetailsUri = "https://$(account).visualstudio.com/DefaultCollection/$(teamProject)/_apis/build/builds/$buildId/timeline?api-version=2.0";
 $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $user,$token)))
 $buildDetails = Invoke-RestMethod -Uri $buildDetailsUri -Method Get -ContentType "application/json" -Headers @{Authorization=("Basic {0}" -f $base64AuthInfo)}
 

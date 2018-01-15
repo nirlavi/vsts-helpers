@@ -1,3 +1,4 @@
+Start-Sleep -s 10
 $buildId = $(Build.BuildId);
 $user = "$(apiUser)"
 $token = "$(personalAccessToken)"
@@ -13,6 +14,11 @@ $logs = $logUrls | % { Invoke-WebRequest $_ -Headers @{Authorization=("Basic {0}
 Write-Host Iterating Test Executions
 foreach ($log in $logs){
     $res = $log | Select-String $testLogRegEx
+    if ($res -eq $null){
+        Write-Host "No Test Assemblies Found"
+        exit 1
+    }
+
     $totalTests = [int]($res.Matches[0].Groups | ? { $_.Name -eq "Total" } | select -ExpandProperty Value)
     if ($totalTests -eq 0){
         Write-Host "Found Execution with 0 tests"
